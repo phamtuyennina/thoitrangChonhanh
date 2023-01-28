@@ -463,11 +463,11 @@ module.exports = {
             const checkRow = await librariesModel.findOne({"_id": mediaId});
             if(!checkRow) return next(new ErrorHandler(false, req.__("Media file does not exist"), 200));
             
-            const range = req.headers.range;
+            const range = (req.headers.range)?req.headers.range:'bytes=0-';
             console.log(req.headers);
             console.log('AAAAAAAAAAAAAAAAAAA');
-            if(!range) range = 'bytes=0-'
-            //if (!range) {  res.status(400).send("Requires Range header") }
+            //if(!range) range = 'bytes=0-'
+            if (!range) {  res.status(400).send("Requires Range header") }
             
             let videoPath = checkRow.path;
             let videoSize = fs.statSync(videoPath).size;
