@@ -464,7 +464,7 @@ module.exports = {
             if(!checkRow) return next(new ErrorHandler(false, req.__("Media file does not exist"), 200));
             
             const range = req.headers.range;
-            console.log(range);
+            console.log(req.headers);
             console.log('AAAAAAAAAAAAAAAAAAA');
             if(!range) range = 'bytes=0-'
             //if (!range) {  res.status(400).send("Requires Range header") }
