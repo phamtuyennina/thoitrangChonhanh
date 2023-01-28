@@ -464,7 +464,10 @@ module.exports = {
             if(!checkRow) return next(new ErrorHandler(false, req.__("Media file does not exist"), 200));
             
             const range = req.headers.range;
-            if (!range) {  res.status(400).send("Requires Range header") }
+            console.log(range);
+            console.log('AAAAAAAAAAAAAAAAAAA');
+            if(!range) range = 'bytes=0-'
+            //if (!range) {  res.status(400).send("Requires Range header") }
             
             let videoPath = checkRow.path;
             let videoSize = fs.statSync(videoPath).size;
